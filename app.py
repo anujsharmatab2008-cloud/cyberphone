@@ -98,7 +98,7 @@ class GlobalAIAggregator(ctk.CTk):
             self.left_container, text="CYBER AGGREGATOR", 
             font=ctk.CTkFont(family="Helvetica", size=22, weight="bold"), text_color="#00FF66"
         )
-        self.title_label.pack(pady=15)  # FIXED: Clean layout padding metric execution
+        self.title_label.pack(pady=15)
 
         self.filter_box = ctk.CTkFrame(self.left_container, fg_color="#121B22", border_color="#00E5FF", border_width=1)
         self.filter_box.pack(fill="x", pady=5, padx=5)
@@ -106,12 +106,9 @@ class GlobalAIAggregator(ctk.CTk):
         self.budget_label = ctk.CTkLabel(self.filter_box, text="Max Budget: ₹1,50,000", text_color="#FFFFFF", font=ctk.CTkFont(size=12, weight="bold"))
         self.budget_label.pack(anchor="w", padx=15, pady=(10, 2))
         
-        # Performance Slider Core Module
         self.budget_slider = ctk.CTkSlider(self.filter_box, from_=10000, to=150000, number_of_steps=140, fg_color="#0A0F14", progress_color="#00FF66", button_color="#00E5FF", command=self.sync_budget_label)
         self.budget_slider.set(150000)
         self.budget_slider.pack(fill="x", padx=15, pady=(0, 10))
-        
-        # Non-blocking filter refresh hook binded to active mouse release
         self.budget_slider.bind("<ButtonRelease-1>", lambda event: self.apply_filters())
 
         self.cpu_label = ctk.CTkLabel(self.filter_box, text="Preferred Chip Core Type:", text_color="#888888", font=ctk.CTkFont(size=11))
@@ -144,6 +141,17 @@ class GlobalAIAggregator(ctk.CTk):
         self.table_placeholder = ctk.CTkLabel(self.table_frame, text="// Select devices on the left to map comparison nodes...", text_color="#666666", font=ctk.CTkFont(family="Courier"))
         self.table_placeholder.pack(expand=True)
 
+        # --- ADDED: EXPLICIT WINNER BANNER ANNOUNCEMENT MODULE ---
+        self.winner_banner = ctk.CTkFrame(self.right_container, fg_color="#1A2630", height=50, border_color="#00FF66", border_width=1)
+        self.winner_banner.pack(fill="x", padx=15, pady=5)
+        self.winner_banner.pack_propagate(False) # Prevents frame from shrinking
+        
+        self.winner_text_label = ctk.CTkLabel(
+            self.winner_banner, text="🏆 AI WINNER: WAITING FOR MATRIX SELECTION...", 
+            font=ctk.CTkFont(family="Helvetica", size=12, weight="bold"), text_color="#888888"
+        )
+        self.winner_text_label.pack(expand=True)
+
         self.compare_btn = ctk.CTkButton(self.right_container, text="RUN INTELLECT VERDICT ⚡", fg_color="#00FF66", text_color="#0A0F14", font=ctk.CTkFont(size=14, weight="bold"), command=self.trigger_ai_thread)
         self.compare_btn.pack(fill="x", padx=15, pady=10)
 
@@ -154,7 +162,6 @@ class GlobalAIAggregator(ctk.CTk):
         self.render_filtered_view()
 
     def sync_budget_label(self, value):
-        # UI Optimization: instantly updates display string label smoothly without blocking
         self.budget_label.configure(text=f"Max Budget: ₹{int(value):,}")
 
     def apply_filters(self):
@@ -213,9 +220,9 @@ class GlobalAIAggregator(ctk.CTk):
         if not self.selected_to_compare:
             self.table_placeholder = ctk.CTkLabel(self.table_frame, text="// Select devices on the left to map comparison nodes...", text_color="#666666", font=ctk.CTkFont(family="Courier"))
             self.table_placeholder.pack(expand=True)
+            self.winner_text_label.configure(text="🏆 AI WINNER: WAITING FOR MATRIX SELECTION...", text_color="#888888")
             return
 
-        # Cap table node visual processing columns to a clean maximum width allocation of 3
         display_nodes = self.selected_to_compare[:3]
 
         for trait in ["Model Label", "Retail Rate", "System RAM", "Chip Core", "Cell Power"]:
@@ -240,6 +247,7 @@ class GlobalAIAggregator(ctk.CTk):
         self.output_box.delete("0.0", "end")
         if len(self.selected_to_compare) < 2:
             self.output_box.insert("0.0", "[CRITICAL ERROR] Target matrix operations require a minimum of 2 selected nodes.")
+            self.winner_text_label.configure(text="🏆 AI WINNER: SELECTION ERROR", text_color="#FF3333")
             return
         
         self.compare_btn.configure(text="PROCESSING VERDICT...")
@@ -247,27 +255,35 @@ class GlobalAIAggregator(ctk.CTk):
 
     def execute_mock_ai_evaluation(self):
         import time
-        time.sleep(1.0)
+        time.sleep(0.8)
 
-        # Hardware evaluation comparison layer logic loop
+        # AI Evaluation Loop: Finds device with best RAM value, using price/battery as secondary tiebreaker
         target_winner = self.selected_to_compare[0]
         for current in self.selected_to_compare:
-            if current["ram"] > target_winner["ram"] or (current["price"] < target_winner["price"] and current["battery"] >= target_winner["battery"]):
+            if current["ram"] > target_winner["ram"]:
                 target_winner = current
+            elif current["ram"] == target_winner["ram"]:
+                # If RAM matches, cheaper phone with a bigger battery wins
+                if current["price"] < target_winner["price"] and current["battery"] >= target_winner["battery"]:
+                    target_winner = current
 
         verdict_text = f"[SYSTEM ENGINE ANALYSIS ACTIVATED]\n"
-        verdict_text += f"-> Processing comparative datasets across your selections.\n"
+        verdict_text += f"-> Completed cross-hardware calculation layer optimizations.\n"
         verdict_text += "------------------------------------------------------\n"
-        verdict_text += f"🏆 AI RECOMMENDED OPTION: {target_winner['name'].upper()}\n\n"
-        verdict_text += f"💡 HARDWARE RUN DOWN:\n"
-        verdict_text += f"The {target_winner['name']} holds the performance balance here. "
-        verdict_text += f"Featuring a {target_winner['cpu']} setup alongside an efficient {target_winner['battery']} mAh battery tier, it delivers optimal specification metrics for its target cost bracket."
+        verdict_text += f"🏆 THE WINNING NODE SELECTION IS: {target_winner['name'].upper()}\n\n"
+        verdict_text += f"💡 HARDWARE JUSTIFICATION:\n"
+        verdict_text += f"The {target_winner['name']} dominates the selected performance cluster. "
+        verdict_text += f"Equipped with a custom {target_winner['cpu']} core setup operating alongside {target_winner['ram']} GB RAM, it maintains the most efficient cost-to-spec optimization index."
         
-        self.after(0, lambda: self._update_ai_output(verdict_text))
+        # Safely sync variables across the main thread layout loop
+        self.after(0, lambda: self._update_ai_output(target_winner["name"].upper(), verdict_text))
 
-    def _update_ai_output(self, text):
+    def _update_ai_output(self, winner_name, text):
         self.output_box.delete("0.0", "end")
         self.output_box.insert("0.0", text)
+        
+        # Flash the dedicated winner banner layout widget in bright Neon Green
+        self.winner_text_label.configure(text=f"🏆 WINNER: {winner_name}", text_color="#00FF66")
         self.compare_btn.configure(text="RUN INTELLECT VERDICT ⚡")
 
 if __name__ == "__main__":
