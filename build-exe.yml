@@ -2,12 +2,12 @@ name: Build Windows Executable
 
 on:
   push:
-    branches: [ "main" ]  # Triggers automatically whenever you update code
-  workflow_dispatch:       # Allows you to trigger the build manually with a button
+    branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
   build:
-    runs-on: windows-latest  # Spins up a clean, virtual Windows environment
+    runs-on: windows-latest
 
     steps:
     - name: Checkout Source Code
@@ -16,12 +16,13 @@ jobs:
     - name: Set Up Python Ecosystem
       uses: actions/setup-python@v5
       with:
-        python-python-version: '3.11'
+        python-version: '3.11'
 
     - name: Install Compiling Dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install customtkinter pyinstaller
+        pip install -r requirements.txt
+        pip install pyinstaller
 
     - name: Compile Script via PyInstaller
       run: |
