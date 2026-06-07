@@ -8,13 +8,14 @@ class GlobalAIAggregator(ctk.CTk):
     def __init__(self):
         super().__init__()
 
+        # Main window configurations
         self.title("AI Mobile Marketplace & Comparer Hub")
         self.geometry("980x760")
-        self.configure(fg_color="#0A0F14")
+        self.configure(fg_color="#0A0F14")  # Deep cyber black
 
-        # --- INTEGRATED MASSIVE MARKET DATABASE ---
+        # --- COMPLETE COMPREHENSIVE INTEGRATED DATABASE ---
         self.global_database = [
-            # --- ₹15k - ₹20k BUDGET CHAMPIONS & RECENT LAUNCHES ---
+            # --- BUDGET CHAMPIONS & RECENT MID-RANGERS (₹14k - ₹20k) ---
             {"name": "OnePlus Nord CE 6 Lite 5G", "brand": "OnePlus", "price": 18999, "ram": 6, "storage": 128, "cpu": "Dimensity 7400 Apex", "battery": 7000},
             {"name": "POCO M8 5G", "brand": "Poco", "price": 17999, "ram": 6, "storage": 128, "cpu": "Snapdragon 6 Gen 3", "battery": 5520},
             {"name": "Moto G96 5G", "brand": "Motorola", "price": 17999, "ram": 8, "storage": 128, "cpu": "Snapdragon 7s Gen 2", "battery": 5500},
@@ -39,7 +40,7 @@ class GlobalAIAggregator(ctk.CTk):
             {"name": "Vivo T3x 5G", "brand": "Vivo", "price": 16499, "ram": 8, "storage": 128, "cpu": "Snapdragon 6 Gen 1", "battery": 6000},
             {"name": "Lava Agni 2 5G", "brand": "Lava", "price": 17999, "ram": 8, "storage": 256, "cpu": "Dimensity 7050", "battery": 4700},
 
-            # --- APPLE PREMIUM SERIES ---
+            # --- APPLE PREMIUM ECOSYSTEM ---
             {"name": "Apple iPhone 17 Pro Max", "brand": "Apple", "price": 149900, "ram": 12, "storage": 256, "cpu": "A19 Pro", "battery": 4832},
             {"name": "Apple iPhone 17 Pro", "brand": "Apple", "price": 129900, "ram": 12, "storage": 128, "cpu": "A19 Pro", "battery": 4200},
             {"name": "Apple iPhone 17 Standard", "brand": "Apple", "price": 79900, "ram": 8, "storage": 128, "cpu": "A19", "battery": 4000},
@@ -49,7 +50,7 @@ class GlobalAIAggregator(ctk.CTk):
             {"name": "Apple iPhone 15 Standard", "brand": "Apple", "price": 59900, "ram": 6, "storage": 128, "cpu": "A16 Bionic", "battery": 3349},
             {"name": "Apple iPhone SE 4 (AI Edition)", "brand": "Apple", "price": 49900, "ram": 8, "storage": 128, "cpu": "A18", "battery": 3200},
 
-            # --- SAMSUNG ULTRA FLAGSHIP & PREMIUM TIERS ---
+            # --- SAMSUNG ULTRA FLAGSHIP & HIGH TIERS ---
             {"name": "Samsung Galaxy S26 Ultra", "brand": "Samsung", "price": 121998, "ram": 12, "storage": 256, "cpu": "Snapdragon 8 Elite", "battery": 5000},
             {"name": "Samsung Galaxy S26 Plus", "brand": "Samsung", "price": 84999, "ram": 12, "storage": 256, "cpu": "Snapdragon 8 Elite", "battery": 4900},
             {"name": "Samsung Galaxy S25 Ultra", "brand": "Samsung", "price": 104400, "ram": 12, "storage": 256, "cpu": "Snapdragon 8 Elite", "battery": 5000},
@@ -59,7 +60,7 @@ class GlobalAIAggregator(ctk.CTk):
             {"name": "Samsung Galaxy A37 5G", "brand": "Samsung", "price": 27999, "ram": 8, "storage": 128, "cpu": "Exynos 1480", "battery": 5000},
             {"name": "Samsung Galaxy M55 5G", "brand": "Samsung", "price": 24999, "ram": 8, "storage": 128, "cpu": "Snapdragon 7 Gen 1", "battery": 5000},
 
-            # --- ONEPLUS TIER ---
+            # --- ONEPLUS HIGH PERFORMANCE ---
             {"name": "OnePlus 15 Pro", "brand": "OnePlus", "price": 79999, "ram": 16, "storage": 256, "cpu": "Snapdragon 8 Elite", "battery": 6500},
             {"name": "OnePlus 13 Standard", "brand": "OnePlus", "price": 69999, "ram": 12, "storage": 256, "cpu": "Snapdragon 8 Elite", "battery": 6000},
             {"name": "OnePlus 13R 5G", "brand": "OnePlus", "price": 42999, "ram": 12, "storage": 256, "cpu": "Snapdragon 8 Gen 3", "battery": 6000},
@@ -67,7 +68,7 @@ class GlobalAIAggregator(ctk.CTk):
             {"name": "OnePlus Nord 6 5G", "brand": "OnePlus", "price": 42999, "ram": 8, "storage": 256, "cpu": "Snapdragon 8s Gen 4", "battery": 9000},
             {"name": "OnePlus Nord CE 4 5G", "brand": "OnePlus", "price": 23499, "ram": 8, "storage": 128, "cpu": "Snapdragon 7 Gen 3", "battery": 5500},
 
-            # --- HIGH PERFORMANCE MID-RANGERS (20k - 50k) ---
+            # --- ADVANCED POWER MID-RANGERS (₹20k - ₹120k) ---
             {"name": "Xiaomi 17 Ultra", "brand": "Xiaomi", "price": 119999, "ram": 16, "storage": 512, "cpu": "Snapdragon 8 Elite", "battery": 5500},
             {"name": "Xiaomi Redmi Note 15 Pro+", "brand": "Xiaomi", "price": 33999, "ram": 12, "storage": 256, "cpu": "Dimensity 7500 Ultra", "battery": 5500},
             {"name": "POCO F6 5G", "brand": "Poco", "price": 29999, "ram": 8, "storage": 256, "cpu": "Snapdragon 8s Gen 3", "battery": 5000},
@@ -89,7 +90,7 @@ class GlobalAIAggregator(ctk.CTk):
         self.setup_ui_layout()
 
     def setup_ui_layout(self):
-        # --- LEFT SIDEBAR: FILTERS & LISTINGS ---
+        # --- LEFT PANEL: NAVIGATION & SELECTION TARGET ---
         self.left_container = ctk.CTkFrame(self, fg_color="transparent", width=460)
         self.left_container.pack(side="left", fill="both", expand=True, padx=15, pady=15)
 
@@ -97,7 +98,7 @@ class GlobalAIAggregator(ctk.CTk):
             self.left_container, text="CYBER AGGREGATOR", 
             font=ctk.CTkFont(family="Helvetica", size=22, weight="bold"), text_color="#00FF66"
         )
-        self.title_label.pack(pady=(10, 15))
+        self.title_label.pack(pady=15)  # FIXED: Clean layout padding metric execution
 
         self.filter_box = ctk.CTkFrame(self.left_container, fg_color="#121B22", border_color="#00E5FF", border_width=1)
         self.filter_box.pack(fill="x", pady=5, padx=5)
@@ -105,12 +106,12 @@ class GlobalAIAggregator(ctk.CTk):
         self.budget_label = ctk.CTkLabel(self.filter_box, text="Max Budget: ₹1,50,000", text_color="#FFFFFF", font=ctk.CTkFont(size=12, weight="bold"))
         self.budget_label.pack(anchor="w", padx=15, pady=(10, 2))
         
-        # FIX 1: Slider now calls sync_budget_label which updates ONLY the text box cleanly
+        # Performance Slider Core Module
         self.budget_slider = ctk.CTkSlider(self.filter_box, from_=10000, to=150000, number_of_steps=140, fg_color="#0A0F14", progress_color="#00FF66", button_color="#00E5FF", command=self.sync_budget_label)
         self.budget_slider.set(150000)
         self.budget_slider.pack(fill="x", padx=15, pady=(0, 10))
         
-        # FIX 2: Bind the physical mouse-release event. Filters execute ONLY when you let go of the slider.
+        # Non-blocking filter refresh hook binded to active mouse release
         self.budget_slider.bind("<ButtonRelease-1>", lambda event: self.apply_filters())
 
         self.cpu_label = ctk.CTkLabel(self.filter_box, text="Preferred Chip Core Type:", text_color="#888888", font=ctk.CTkFont(size=11))
@@ -130,7 +131,7 @@ class GlobalAIAggregator(ctk.CTk):
         self.scroll_frame = ctk.CTkScrollableFrame(self.left_container, fg_color="#121B22", border_color="#00FF66", border_width=1)
         self.scroll_frame.pack(fill="both", expand=True, pady=10)
 
-        # --- RIGHT SIDEBAR: REAL-TIME SPEC MATRIX ---
+        # --- RIGHT PANEL: REAL-TIME COMPARATIVE BENCHMARK ---
         self.right_container = ctk.CTkFrame(self, fg_color="#121B22", border_color="#00E5FF", border_width=1)
         self.right_container.pack(side="right", fill="both", expand=True, padx=(0, 15), pady=25)
 
@@ -153,7 +154,7 @@ class GlobalAIAggregator(ctk.CTk):
         self.render_filtered_view()
 
     def sync_budget_label(self, value):
-        # Updates instantly while dragging, without triggering the heavy calculation cycle
+        # UI Optimization: instantly updates display string label smoothly without blocking
         self.budget_label.configure(text=f"Max Budget: ₹{int(value):,}")
 
     def apply_filters(self):
@@ -214,6 +215,7 @@ class GlobalAIAggregator(ctk.CTk):
             self.table_placeholder.pack(expand=True)
             return
 
+        # Cap table node visual processing columns to a clean maximum width allocation of 3
         display_nodes = self.selected_to_compare[:3]
 
         for trait in ["Model Label", "Retail Rate", "System RAM", "Chip Core", "Cell Power"]:
@@ -247,6 +249,7 @@ class GlobalAIAggregator(ctk.CTk):
         import time
         time.sleep(1.0)
 
+        # Hardware evaluation comparison layer logic loop
         target_winner = self.selected_to_compare[0]
         for current in self.selected_to_compare:
             if current["ram"] > target_winner["ram"] or (current["price"] < target_winner["price"] and current["battery"] >= target_winner["battery"]):
